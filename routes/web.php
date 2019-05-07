@@ -14,8 +14,48 @@
 Auth::routes();
 /* CoreUI templates */
 
+
+
 Route::middleware('auth')->group(function() {
-	Route::view('/', 'panel.blank');
+
+	Route::get('/payment', 'UserPaymentController@index')->name('userpayment');
+
+	Route::middleware('user.firm_check')->group(function() {
+
+		Route::get('/', 'Dashboard\DashboardController@index')->name('dashboard');
+
+		Route::prefix('settings')->group(function () {
+			Route::get('/', 'Dashboard\SettingsController@index')->name('settings');
+			Route::post('/user', 'Dashboard\SettingsController@settings_post')->name('settings.post');
+			Route::post('/location', 'Dashboard\SettingsController@location_post')->name('settings.location');
+			Route::post('/legal_info', 'Dashboard\SettingsController@legal_info_post')->name('settings.legal_info');
+		});
+
+		Route::prefix('cases')->group(function() {
+			Route::get('/', 'Dashboard\LegalCaseController@index')->name('legal_cases');
+			Route::get('/{uuid}', 'Dashboard\LegalCaseController@single')->name('legal_case.single');
+
+			Route::post('/', 'Dashboard\LegalCaseController@post')->name('legal_cases.post');
+			Route::post('/client', 'Dashboard\LegalCaseController@post_client')->name('legal_case.post_client');
+			Route::post('/client/location', 'Dashboard\LegalCaseController@post_client_location')->name('legal_case.post_client_location');
+			Route::post('/opposing_councel', 'Dashboard\LegalCaseController@post_opposing_councel')->name('legal_case.post_opposing_councel');
+		});
+	
+	});
+
+	Route::prefix('firm')->group(function () {
+		Route::get('/', 'Dashboard\FirmController@index')->name('firm');
+		Route::post('/', 'Dashboard\FirmController@post')->name('firm.post');
+
+		Route::get('/stripe/create', 'Dashboard\FirmController@stripe_account_create')->name('firm.stripe_create');
+		Route::get('/stripe/redirect', 'Dashboard\FirmController@stripe_return');
+
+	});
+
+
+
+
+
 	// Section CoreUI elements
 	Route::view('/sample/dashboard','samples.dashboard');
 	Route::view('/sample/buttons','samples.buttons');

@@ -6,11 +6,16 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-        "fideloper/proxy": "~3.3",
-        "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "fideloper/proxy": "~4.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "laravel/cashier": "^9.1",
+        "laravel/framework": "5.*",
+        "laravel/tinker": "~1.0",
+        "spatie/laravel-permission": "^2.33",
+        "webpatser/laravel-uuid": "^3.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
@@ -51,6 +56,8 @@
     },
     "config": {
         "preferred-install": "dist",
+        "minimum-stability":"dev",
+        "prefer-stable":true,
         "sort-packages": true,
         "optimize-autoloader": true
     }

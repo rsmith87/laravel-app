@@ -11,20 +11,30 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-  <meta name="author" content="Łukasz Holeczek">
-  <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,Angular 2,Angular4,Angular 4,jQuery,CSS,HTML,RWD,Dashboard,React,React.js,Vue,Vue.js">
+  <meta name="description" content="Legal Case Management made easy.">
+  <meta name="keyword" content="Case Management, Legal Case Management">
   <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
-  <title>CoreUI - Open Source Bootstrap Admin Template</title>
+  <title>Legalkeeper</title>
 
   <!-- Icons -->
-  <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('font-awesome-5.7.2/css/all.css') }}">
+  <link rel="stylesheet" href="{{ asset('font-awesome-5.7.2/css/brands.css') }}">
   <link href="{{ asset('css/simple-line-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/pace.css') }}" rel="stylesheet">
+
+  @yield('extra_css')
 
   <!-- Main styles for this application -->
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+  
   <!-- Styles required by this views -->
   <link rel="stylesheet" href="{{ asset('css/custom.css') }}">  
+  <script type="text/javascript" src="{{ asset('js/vendor/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/vendor/popper.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
+
+
+
 </head>
 <!-- BODY options, add following classes to body to change options
 '.header-fixed' - Fixed Header
@@ -66,4 +76,7 @@
   @yield('myscript')
 
 </body>
+<script type="text/javascript" src="{{ asset('js/jquery.input-mask.min.js') }}"></script>
+@yield('extra_js')
+<script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>
 </html>

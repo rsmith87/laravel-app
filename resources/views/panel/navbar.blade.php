@@ -2,7 +2,7 @@
   <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#"></a>
+<a class="navbar-brand" href="#"></a>
   <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -14,7 +14,7 @@
     </li> 
     --}}
     <li class="nav-item px-3">
-      <a class="nav-link" href="/sample/dashboard">Samples</a>
+      <a class="nav-link" href="/">Dashboard</a>
     </li>
   </ul>
   <ul class="nav navbar-nav ml-auto">
@@ -54,7 +54,8 @@
         <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
         <div class="divider"></div>
         <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>
- --}}        
+ --}}   <a class="dropdown-item" href="{{ route('settings') }}"><i class="fa fa-cogs"></i> Settings</a>
+        <div class="divider"></div>     
         <a class="dropdown-item" href="{{ route('logout') }}" 
           onclick="event.preventDefault(); 
           document.getElementById('logout-form').submit();">
