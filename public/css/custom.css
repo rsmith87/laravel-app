@@ -84,3 +84,86 @@ table tr td{
     display: block;
     border-bottom:1px solid #c2cfd6;
 }
+
+#document-main{
+    background-color:white;
+}
+
+.documents{
+    padding-top: 10px;
+}
+
+.navbar-brand{
+    background-image: url('../img/lgk-logo.png') !important;
+    background-size: 160px auto !important;
+}
+
+.document-document{
+    padding: 0 0 0px;
+}
+
+.document-document span{
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.document-document small{
+    margin-left:10px;
+}
+
+.documents hr{
+    margin: 0.5rem 0;
+}
+
+.document-document span i{
+    margin-right:5px;
+    vertical-align: middle;
+}
+.document-document i.fa-sort-down, .document-document i.fa-sort-up{
+    line-height:0em;
+}
+
+.documents-content.folder-item .col-sm:nth-child(1) span{
+    margin-left:2rem;
+}
+#document-main{
+    padding-left:0;
+    padding-right:0;
+}
+.folder-item.closed{
+    height:0;
+    overflow: hidden;
+    margin:0 !important;
+}
+
+.folder-item.open{
+    height:100%;
+    -webkit-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+}
+
+.folder-item.open .col-sm:nth-child(1) span{
+    margin-left:1.35rem;
+}
+
+.dropzone{
+    text-align:center;
+    padding: 4rem;
+    border: dashed 1px #000;
+}
+
+.dz-success-mark{
+    float:left;
+    background-color:green;
+    border-radius:50px;
+    padding-top:0px;
+    line-height:11px;
+}
+
+.dz-error-mark{
+    float:left;
+    background-color:red;
+    border-radius:50px;
+    padding-top:0px;
+    line-height:11px;
+}

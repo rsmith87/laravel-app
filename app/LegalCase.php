@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LegalCase extends Model
 {
     protected $table = 'legal_case';
-    
+
     /**
      * The attributes that should be mutated to dates.
      *
@@ -17,13 +17,6 @@ class LegalCase extends Model
         'open_date',
         'close_date'
     ];
-
-    /**
-     * The storage format of the model's date columns.
-     *
-     * @var string
-     */
-    protected $dateFormat = 'Y-m-d';
 
     public $fillable = [
         'case_uuid',        

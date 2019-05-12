@@ -40,6 +40,11 @@ Route::middleware('auth')->group(function() {
 			Route::post('/client/location', 'Dashboard\LegalCaseController@post_client_location')->name('legal_case.post_client_location');
 			Route::post('/opposing_councel', 'Dashboard\LegalCaseController@post_opposing_councel')->name('legal_case.post_opposing_councel');
 		});
+
+		Route::prefix('documents')->group(function() {
+			Route::get('/', 'Dashboard\DocumentController@index')->name('documents');
+			Route::post('/file-upload', 'Dashboard\DocumentController@post')->name('documents.post');
+		});
 	
 	});
 

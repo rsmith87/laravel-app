@@ -13,6 +13,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/leads"><i class="fa fa-user-circle"></i> Leads </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/documents"><i class="far fa-folder"></i> Documents </a>
+      </li>
 
       <li class="nav-title">
         Firm
