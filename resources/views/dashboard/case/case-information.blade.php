@@ -1,5 +1,5 @@
 <div class="tab-pane fade show active" id="case-home" role="tabpanel" aria-labelledby="case-home-tab">
-    @if(count($legal_case) > 0)
+    @if(isset($legal_case))
         <button class="btn btn-primary mb-3 btn-sm" id="edit-case-information" data-toggle="modal" data-target="#caseInformation">Edit case information</button>
     @else
         <button class="btn btn-primary mb-3 btn-sm" id="add-case-information" data-toggle="modal" data-target="#caseInformation">Add case information</button>

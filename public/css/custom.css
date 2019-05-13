@@ -148,22 +148,10 @@ table tr td{
 
 .dropzone{
     text-align:center;
-    padding: 4rem;
+    padding: 4rem !important;
     border: dashed 1px #000;
 }
 
-.dz-success-mark{
-    float:left;
-    background-color:green;
-    border-radius:50px;
-    padding-top:0px;
-    line-height:11px;
-}
-
-.dz-error-mark{
-    float:left;
-    background-color:red;
-    border-radius:50px;
-    padding-top:0px;
-    line-height:11px;
+.documents hr:last-of-type {
+    display: none;
 }

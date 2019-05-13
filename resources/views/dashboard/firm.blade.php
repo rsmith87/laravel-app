@@ -12,11 +12,11 @@
     </ul>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                @if(count($firm) > 0)
+                @if(isset($firm))
             <button class="btn btn-warning mb-3 btn-sm" id="edit-case-information" data-toggle="modal" data-target="#editFirm">Edit firm</button>
                 @endif
             <div class="col-lg mb-4 float-left">
-                @if(count($firm) > 0)
+                @if(isset($firm))
                 <p>
                     <strong>Firm Information</strong>
                     <small>Information regarding your firm</small>

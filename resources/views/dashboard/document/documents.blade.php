@@ -33,7 +33,7 @@ $(function () {
     <div class="row">
         <div class="col-12 col-sm-2">
             <a href="#" class="btn btn-primary btn-block" id="add-document" data-toggle="modal" data-target="#addDocument"><i class="fas fa-file"></i> Add Document</a>
-            <a href="#" class="btn btn-primary btn-block"><i class="fas fa-folder-plus"></i> Add Folder</a>
+            <!--<a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addFolder"><i class="fas fa-folder-plus"></i> Add Folder</a>-->
             <hr>
             <a href="#" class="btn btn-primary btn-block"><i class="fas fa-file-alt"></i> Create Document</a>
 
@@ -43,11 +43,21 @@ $(function () {
                 <div class="documents-menu">
 
                 </div>
+                @foreach($documents as $document)
                 <div class="documents-content">
                     <div class="document-document row">
                         <div class="col-sm">
                             <span>
-                                <i class="fas fa-2x fa-file-word"></i> File-1.docx 
+                                @if($document->type === 'jpeg' || $document->type === 'png' || $document->type === 'gif')
+                                    <i class="fas fa-2x fa-file-image"></i> 
+                                @elseif($document->type === 'pdf')
+                                    <i class="fas fa-2x fa-file-pdf"></i>
+                                @elseif($document->type === 'docx')
+                                    <i class="fas fa-2x fa-file-word"></i> 
+                                @elseif($document->type === 'xls')
+                                    <i class="fas fa-2x fa-file-excel"></i>
+                                @endif
+                                {{ $document['name'] }}
                             </span>
                         </div>
                         <div class="col-sm">
@@ -55,130 +65,15 @@ $(function () {
                         </div>
                         <div class="col-sm">
                             <div class="document-buttons float-right">
-                                <button class="btn btn-primary"><i class="far fa-eye"></i></button>
-                                <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#docViewer" data-id="{{ $document->uuid }}"><i class="far fa-eye"></i></button>
+                                <button class="btn btn-warning" data-toggle="modal" data-target="#docEdit" data-id="{{ $document->uuid }}"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-danger" data-toggle="modal" data-target="#docDelete" data-id="{{ $document->uuid }}"><i class="fas fa-trash-alt"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <hr>
-                <div class="documents-content">
-                        <div class="document-document row">
-                            <div class="col-sm">
-                                <span>
-                                    <i class="fas fa-2x fa-file-excel"></i> File-2.xls 
-                                </span>
-                            </div>
-                            <div class="col-sm">
-                                <small><strong>Description: </strong>File 1 with random information</small>
-                            </div>
-                            <div class="col-sm">
-                                <div class="document-buttons float-right">
-                                    <button class="btn btn-primary"><i class="far fa-eye"></i></button>
-                                    <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <hr>
-                <div class="documents-content">
-                        <div class="document-document row">
-                            <div class="col-sm">
-                                <span>
-                                    <i class="fas fa-2x fa-file-pdf"></i> File-3.pdf 
-                                </span>
-                            </div>
-                            <div class="col-sm">
-                                <small><strong>Description: </strong>File 1 with random information</small>
-                            </div>
-                            <div class="col-sm">
-                                <div class="document-buttons float-right">
-                                    <button class="btn btn-primary"><i class="far fa-eye"></i></button>
-                                    <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="documents-content folder">
-                            <div class="document-document row">
-                                <div class="col-sm">
-                                    <span>
-                                        <i class="fas fa-2x fa-folder"></i> Folder 1
-                                    </span>
-                                </div>
-                                <div class="col-sm">
-                                    <small><strong>Description: </strong>File 1 with random information</small>
-                                </div>
-                                <div class="col-sm">
-                                    <div class="document-buttons float-right">
-                                        <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="documents-content folder-item closed mt-2 mb-2">
-                            <div class="document-document row">
-                                <div class="col-sm">     
-                                    <span>
-                                        <i class="fas fa-2x fa-file-image"></i> File-5.jpg 
-                                    </span>
-                                </div>
-                                <div class="col-sm">
-                                    <small><strong>Description: </strong>File 1 with random information</small>
-                                </div>
-                                <div class="col-sm">
-                                    <div class="document-buttons float-right">
-                                        <button class="btn btn-primary"><i class="far fa-eye"></i></button>
-                                        <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="documents-content folder mb-2">
-                            <div class="document-document row">
-                                <div class="col-sm">
-                                    <span>
-                                        <i class="fas fa-2x fa-folder"></i> Folder 2
-                                    </span>
-                                </div>
-                                <div class="col-sm">
-                                    <small><strong>Description: </strong>File 1 with random information</small>
-                                </div>
-                                <div class="col-sm">
-                                    <div class="document-buttons float-right">
-                                        <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="documents-content folder-item closed mt-2 mb-2">
-                            <div class="document-document row">
-                                <div class="col-sm">     
-                                    <span>
-                                        <i class="fas fa-2x fa-file-image"></i> File-5.jpg 
-                                    </span>
-                                </div>
-                                <div class="col-sm">
-                                    <small><strong>Description: </strong>File 1 with random information</small>
-                                </div>
-                                <div class="col-sm">
-                                    <div class="document-buttons float-right">
-                                        <button class="btn btn-primary"><i class="far fa-eye"></i></button>
-                                        <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                        </div>
+                @endforeach
                         
                 </div>
             </div>

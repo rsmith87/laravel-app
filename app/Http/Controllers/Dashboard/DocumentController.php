@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use App\Document;
+use App\Folder;
 
 class DocumentController extends Controller
 {
@@ -25,8 +29,11 @@ class DocumentController extends Controller
      */
     public function index()
     {
+        $documents = Document::where('user_id', \Auth::id())->get();
+
         return view('dashboard.document.documents', [
             'user' => \Auth::user(),
+            'documents' => $documents,
         ]);
     }
 
@@ -40,16 +47,46 @@ class DocumentController extends Controller
         $data = $request->all();
         $file = $request->file('file');
         //$tempFile = $data['file']['tmp_name'];
-        $fileName = $file->getClientOriginalName();
-
-        Storage::disk('local')->putFileAs(
-            'files/'.$fileName,
+        $file_name = $file->getClientOriginalName();
+        $file_path = $file->getPathName();
+        $file_extension = $file->clientExtension();
+        
+        $storage_success = Storage::disk('local')->putFileAs(
+            \Auth::id().'/files',
             $file,
-            $fileName
+            $file_name
         );
 
+        /*Create models for this file now*/
+        Document::create([
+            'uuid' => (string) Str::uuid(),
+            'name' => $file_name,
+            'type' => $file_extension,
+            
+            'path' => $storage_success,
+            'user_id' => \Auth::id(),
+        ]);
 
-        error_log('here');
+
+        if($storage_success) {
+            return response()->json('success', 200);
+        } else {
+            return response()->json('error', 400);
+        }
 
     }
+
+    /*public function post_folder(Request $request)
+    {
+        $data = $request->all();
+        $folder_name = $data['name'];
+
+        Folder::create([
+            'uuid' => (string) Str::uuid(),
+            'name' => $data['name'],
+            'user_id' => \Auth::id(),
+        ]);
+
+        return redirect()->back();
+    }*/
 }

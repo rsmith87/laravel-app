@@ -1,11 +1,5 @@
+<link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
 <script type="text/javascript" src="{{ asset('js/dropzone.js') }}"></script>
-<script type="text/javascript">
-Dropzone.options.documentDropzone = {
-  paramName: "file", // The name that will be used to transfer the file
-  maxFilesize: 2, // MB
-}
-</script>
-
 
 <div class="modal fade" id="addDocument" tabindex="-1" role="dialog" aria-labelledby="addDocument" aria-hidden="true">  
     <div class="modal-dialog" role="document">
@@ -22,3 +16,54 @@ Dropzone.options.documentDropzone = {
         </div>
     </div> 
 </div>
+
+<div class="modal fade" id="docViewer" tabindex="-1" role="dialog" aria-labelledby="docViewer" aria-hidden="true">  
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" action="{{ route('documents.post_folder') }}">
+                {!! csrf_field() !!}
+                <div class="modal-body">   
+                    <label>Folder name</label>
+                    <input type="text" name="name" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+        </div>
+    </div> 
+</div>
+
+<div class="modal fade" id="docEdit" tabindex="-1" role="dialog" aria-labelledby="docViewer" aria-hidden="true">  
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" action="{{ route('documents.post_folder') }}">
+                {!! csrf_field() !!}
+                <div class="modal-body">   
+                    <label>Folder name</label>
+                    <input type="text" name="name" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+        </div>
+    </div> 
+</div>
+
+<div class="modal fade" id="docDelete" tabindex="-1" role="dialog" aria-labelledby="docViewer" aria-hidden="true">  
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" action="{{ route('documents.post_folder') }}">
+                {!! csrf_field() !!}
+                <div class="modal-body">   
+                    <label>Folder name</label>
+                    <input type="text" name="name" class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+        </div>
+    </div> 
+</div>
+
+docEdit
+docDelete
