@@ -45,7 +45,12 @@ Route::middleware('auth')->group(function() {
 			Route::get('/', 'Dashboard\DocumentController@index')->name('documents');
 			Route::post('/file-upload', 'Dashboard\DocumentController@post')->name('documents.post');
 			Route::post('/folder-create', 'Dashboard\DocumentController@post_folder')->name('documents.post_folder');
-		});
+        });
+        
+        Route::prefix('clients')->group(function() {
+            Route::get('/', 'Dashboard\ClientController@index')->name('clients');
+            Route::get('/{uuid}', 'Dashboard\ClientController@single')->name('client');
+        });
 	
 	});
 
