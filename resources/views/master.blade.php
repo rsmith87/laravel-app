@@ -52,27 +52,27 @@
 -->
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
-  @include('panel.navbar')
+  @include('lgk_panel.navbar')
   
   <div class="app-body">
-    @include('panel.sidebar')
+    @include('lgk_panel.sidebar')
     <!-- Main content -->
     <main class="main">
 
       <!-- Breadcrumb -->
-      @include('panel.breadcrumb')
+      @include('lgk_panel.breadcrumb')
 
       @yield('content')
       <!-- /.container-fluid -->
     </main>
 
-    @include('panel.asidemenu')
+    @include('lgk_panel.asidemenu')
 
   </div>
 
-  @include('panel.footer')
+  @include('lgk_panel.footer')
 
-  @include('panel.scripts')
+  @include('lgk_panel.scripts')
   @yield('myscript')
 
 </body>

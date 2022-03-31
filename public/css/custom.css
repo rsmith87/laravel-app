@@ -91,6 +91,7 @@ table tr td{
 
 .documents{
     padding-top: 10px;
+    padding-bottom:10px;
 }
 
 .navbar-brand{
@@ -146,12 +147,24 @@ table tr td{
     margin-left:1.35rem;
 }
 
-.dropzone{
+#documentDropzone{
     text-align:center;
     padding: 4rem !important;
-    border: dashed 1px #000;
+    border: dashed 1px #000 !important;
+    cursor: pointer;
 }
 
 .documents hr:last-of-type {
     display: none;
+}
+
+/*
+* Overall changes
+*/
+.modal-lg{
+    max-width: 75%;
+}
+
+#docViewerModal img{
+    max-width:100%;
 }

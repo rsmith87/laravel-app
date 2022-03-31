@@ -42,7 +42,7 @@ class DocumentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function post(Request $request)
+    public function post_file(Request $request)
     {
         $data = $request->all();
         $file = $request->file('file');
@@ -51,19 +51,16 @@ class DocumentController extends Controller
         $file_path = $file->getPathName();
         $file_extension = $file->clientExtension();
         
-        $storage_success = Storage::disk('local')->putFileAs(
-            \Auth::id().'/files',
-            $file,
-            $file_name
-        );
+        $path = 'users/'.\Auth::id().'/files';
+        $dest_path = base_path('public/users/'.\Auth::id().'/files');
+        $storage_success = $file->move($dest_path, $file->getClientOriginalName());
 
         /*Create models for this file now*/
         Document::create([
             'uuid' => (string) Str::uuid(),
             'name' => $file_name,
             'type' => $file_extension,
-            
-            'path' => $storage_success,
+            'path' => $path.'/'.$file->getClientOriginalName(),
             'user_id' => \Auth::id(),
         ]);
 
@@ -76,17 +73,65 @@ class DocumentController extends Controller
 
     }
 
-    /*public function post_folder(Request $request)
+    /**
+     * Posts a folder with name
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function post_folder(Request $request)
     {
         $data = $request->all();
-        $folder_name = $data['name'];
+        $folder_name = $data['folder_name'];
 
-        Folder::create([
+        Document::create([
             'uuid' => (string) Str::uuid(),
-            'name' => $data['name'],
+            'name' => $folder_name,
+            'is_folder' => 1,
             'user_id' => \Auth::id(),
+            'path' => null,
+            'type' => 'folder'
         ]);
 
         return redirect()->back();
-    }*/
+    }
+
+    /**
+     * Posts a WYSIWYG Document
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function post_wysiwyg_document(Request $request)
+    {
+        $data = $request->all();
+        $tinymce_data = $data['tinymce_data'];
+
+        /*Create models for this file now*/
+        Document::create([
+            'uuid' => (string) Str::uuid(),
+            'name' => $data['document_name'],
+            'type' => 'tinymce',
+            'path' => 'db',
+            'data' => $tinymce_data,
+            'user_id' => \Auth::id(),
+        ]);
+
+        return redirect()->back()->with('success', 'Your document has been created');
+    }
+
+    /**
+     * View File for ajax
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function view_file($uuid = null) 
+    {
+        $data = $uuid;
+
+        $document = Document::where('uuid', $uuid)->first();
+
+        return $document->toArray();
+    }
 }

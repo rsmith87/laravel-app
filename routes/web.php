@@ -34,7 +34,6 @@ Route::middleware('auth')->group(function() {
 		Route::prefix('cases')->group(function() {
 			Route::get('/', 'Dashboard\LegalCaseController@index')->name('legal_cases');
 			Route::get('/{uuid}', 'Dashboard\LegalCaseController@single')->name('legal_case.single');
-
 			Route::post('/', 'Dashboard\LegalCaseController@post')->name('legal_cases.post');
 			Route::post('/client', 'Dashboard\LegalCaseController@post_client')->name('legal_case.post_client');
 			Route::post('/client/location', 'Dashboard\LegalCaseController@post_client_location')->name('legal_case.post_client_location');
@@ -42,9 +41,11 @@ Route::middleware('auth')->group(function() {
 		});
 
 		Route::prefix('documents')->group(function() {
-			Route::get('/', 'Dashboard\DocumentController@index')->name('documents');
-			Route::post('/file-upload', 'Dashboard\DocumentController@post')->name('documents.post');
-			Route::post('/folder-create', 'Dashboard\DocumentController@post_folder')->name('documents.post_folder');
+            Route::get('/', 'Dashboard\DocumentController@index')->name('documents');
+            Route::get('/document-viewer/{id}', 'Dashboard\DocumentController@view_file')->name('documents.view_file');
+            Route::post('/file-upload', 'Dashboard\DocumentController@post_file')->name('documents.post');
+            Route::post('/file-create', 'Dashboard\DocumentController@post_wysiwyg_document')->name('documents.create');
+            Route::post('/folder-create', 'Dashboard\DocumentController@post_folder')->name('documents.post_folder');
         });
         
         Route::prefix('clients')->group(function() {

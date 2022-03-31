@@ -1,4 +1,4 @@
-@extends('master') 
+@extends('lgk_master') 
 
 @section('extra_css')
 <link rel='stylesheet' href='{{ asset('css/datetimepicker.min.css') }}'>
@@ -31,15 +31,20 @@ $(function () {
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#case-home" role="tab" aria-controls="home" aria-selected="true">Case Information</a>
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#case-home" role="tab" aria-controls="home" aria-selected="true">Client Information</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="home-tab" data-toggle="tab" href="#case-home" role="tab" aria-controls="home" aria-selected="true">Communication Logs</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="home-tab" data-toggle="tab" href="#case-home" role="tab" aria-controls="home" aria-selected="true">Invoices</a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="case-home" role="tabpanel" aria-labelledby="case-home-tab">
-                    @if(isset($client))
-        <button class="btn btn-primary mb-3 btn-sm" id="edit-case-information" data-toggle="modal" data-target="#caseInformation">Edit case information</button>
-    @else
-        <button class="btn btn-primary mb-3 btn-sm" id="add-case-information" data-toggle="modal" data-target="#caseInformation">Add case information</button>
+    <div class="tab-pane fade show active" id="case-home" role="tabpanel" aria-labelledby="case-home-tab">
+    @if(isset($client))
+        <button class="btn btn-primary mb-3 btn-sm" id="edit-client-information" data-toggle="modal" data-target="#edit-client-modal">Edit client</button> 
+        <button class="btn btn-primary mb-3 btn-sm" id="text-client" data-toggle="modal" data-target="#text-client-modal">Text client</button> 
     @endif
         <div class="row">
             <div class="col-sm">
@@ -51,8 +56,22 @@ $(function () {
                 <label><strong>Last name</strong></label>
                 <p>{{ $client->last_name ?? null }}</p>
             </div>
-    
        </div>
+        <div class="row">
+            <div class="col-sm">
+                <label><strong>Address</strong></label>
+                <p>
+                    {{ $client->clientContactInfo->address_1 }}<br />
+                    {{ $client->clientContactInfo->address_2 ? $client->clientContactInfo->address_2 . "<br />" : "" }}
+                    {{ $client->clientContactInfo->city }}, {{ $client->clientContactInfo->state }} {{ $client->clientContactInfo->zip }}
+                </p>
+            </div>
+            <div class="col-sm">
+                <label><strong>Contact Information</strong></label>
+                <p><strong>Phone:</strong> {{ $client->clientContactInfo->phone }}</p>
+                <p><strong>Email:</strong> {{ $client->clientContactInfo->email }}</p>
+            </div>
+        </div>
 
     </div>
 </div>

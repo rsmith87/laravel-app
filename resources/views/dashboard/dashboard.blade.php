@@ -1,4 +1,4 @@
-@extends('master')
+@extends('lgk_master')
 @section('content')
 
 <div class="container-fluid">

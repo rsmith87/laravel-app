@@ -45,7 +45,7 @@ class ClientController extends Controller
         if(!$explode[1]){
             return redirect()->back()->withErrors(['No URI']);
         }
-        $client = Client::where('uuid', $explode[1])->first();
+        $client = Client::where('uuid', $explode[1])->with('clientContactInfo')->first();
 
         return view('dashboard.client.single', [
             'client' => $client,

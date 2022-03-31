@@ -21,7 +21,7 @@ class Documents extends Migration
             $table->text('type')->nullable();
             $table->text('path')->nullable();
             $table->longText('data')->nullable();
-            $table->integer('is_folder');
+            $table->integer('is_folder')->default('0');
             $table->uuid('folder_uuid')->nullable();
             $table->integer('sort_id')->nullable();
             $table->integer('user_id')->unsigned();

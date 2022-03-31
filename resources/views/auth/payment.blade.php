@@ -1,4 +1,4 @@
-@extends('master')
+@extends('lgk_master')
 
 
 @section('body_class', 'login-page')

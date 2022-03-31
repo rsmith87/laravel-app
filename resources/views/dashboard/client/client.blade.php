@@ -1,4 +1,4 @@
-@extends('master') 
+@extends('lgk_master') 
 
 @section('extra_css')
 <link rel='stylesheet' href='{{ asset('css/datetimepicker.min.css') }}'>

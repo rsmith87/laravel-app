@@ -1,0 +1,2 @@
+<script src="{{ asset('js/vendor/pace.min.js') }}"></script>
+  <link href="{{ asset('css/pace.css') }}" rel="stylesheet">

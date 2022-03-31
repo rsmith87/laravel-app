@@ -1,4 +1,4 @@
-@extends('master') 
+@extends('lgk_master') 
 @section('content')
     @include('dashboard.error')
 <div class="container-fluid">

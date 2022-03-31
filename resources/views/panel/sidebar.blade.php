@@ -16,6 +16,12 @@
       <li class="nav-item">
         <a class="nav-link" href="/documents"><i class="far fa-folder"></i> Documents </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/documents"><i class="far fa-folder"></i> Messages </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/messages"><i class="far fa-calendar-alt"></i> Events </a>
+      </li>
 
       <li class="nav-title">
         Firm
@@ -30,6 +36,7 @@
       <li class="nav-item">
         <a class="nav-link" href="/sample/dashboard"><i class="icon-calculator"></i> Samples</a>
       </li>
+      
     </ul>
   </nav>
   <button class="sidebar-minimizer brand-minimizer" type="button"></button>
